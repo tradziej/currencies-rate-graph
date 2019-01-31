@@ -11,4 +11,10 @@
 #
 
 class ExchangeRate < ApplicationRecord
+  CURRENCIES = %w(BRL EUR USD AUD)
+
+  validates :currency, presence: true, uniqueness: { scope: :date }
+  validates :currency, inclusion: { in: CURRENCIES }, length: { is: 3 }
+  validates :date, presence: true
+  validates :rate, presence: true, numericality: { greater_than: 0 }
 end
