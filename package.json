@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "chart.js": "^2.7.3",
+    "ramda": "^0.26.1",
     "stimulus": "^1.1.1"
   },
   "devDependencies": {
