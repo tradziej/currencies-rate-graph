@@ -1,4 +1,9 @@
-<div data-controller="chart" data-exchange-rates='<%= @rates %>'>
+<div data-controller="chart" data-chart-range="1W" data-exchange-rates='<%= @rates %>'>
+  <button data-target="chart.range" data-action="click->chart#changeRange" data-range="1W">1W</button>
+  <button data-target="chart.range" data-action="click->chart#changeRange" data-range="1M">1M</button>
+  <button data-target="chart.range" data-action="click->chart#changeRange" data-range="1Y">1Y</button>
+  <button data-target="chart.range" data-action="click->chart#changeRange" data-range="3Y">3Y</button>
+  <button data-target="chart.range" data-action="click->chart#changeRange" data-range="5Y">5Y</button>
   <div>
     <div style="width:75%;">
       <canvas data-target="chart.ratesChart"></canvas>

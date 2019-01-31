@@ -3,11 +3,38 @@ import "chart.js"
 import { groupBy, values, prop, uniq, map, pipe } from "ramda";
 
 export default class extends Controller {
-  static targets = ["ratesChart"]
+  static targets = ["ratesChart", "range"]
+
+  initialize() {
+    this.disableOrEnableButtons()
+  }
 
   connect() {
     const rates = JSON.parse(this.element.dataset.exchangeRates)
     this.loadRatesChart(rates)
+  }
+
+  get range() {
+    return this.data.get("range")
+  }
+
+  set range(value) {
+    this.data.set("range", value)
+    this.disableOrEnableButtons()
+  }
+
+  changeRange(event) {
+    this.range = event.target.dataset.range
+  }
+
+  disableOrEnableButtons() {
+    this.rangeTargets.forEach(el => {
+      if (el.dataset.range === this.range) {
+        el.disabled = true
+      } else {
+        el.disabled = false
+      }
+    }, this)
   }
 
   loadRatesChart(rates) {
