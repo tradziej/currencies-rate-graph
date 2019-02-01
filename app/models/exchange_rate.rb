@@ -17,4 +17,6 @@ class ExchangeRate < ApplicationRecord
   validates :currency, inclusion: { in: CURRENCIES }, length: { is: 3 }
   validates :date, presence: true
   validates :rate, presence: true, numericality: { greater_than: 0 }
+
+  scope :last_week, -> { where('date >= ?', Time.now - 1.week) }
 end

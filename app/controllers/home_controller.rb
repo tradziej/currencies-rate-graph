@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def show
-    @rates = ExchangeRate.all.to_json(only: [:date, :rate, :currency])
+    @rates = ExchangeRate.last_week.to_json(only: [:date, :rate, :currency])
   end
 end
