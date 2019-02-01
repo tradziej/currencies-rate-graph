@@ -91,7 +91,8 @@ export default class extends Controller {
             hitRadius: 10,
             hoverRadius: 5
           }
-        }
+        },
+        animation: false
       }
 
       this._chart = new Chart(ctx, { type: "line", data: { datasets }, options })
@@ -178,8 +179,6 @@ export default class extends Controller {
       dataset.data = datasets[index]
     })
 
-    this.chart.update({
-      duration: 0
-    })
+    this.chart.update()
   }
 }
