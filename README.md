@@ -1,24 +1,14 @@
-# README
+## BRL quotation versus EUR, USD and AUD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails 5 application using [Stimulus](https://stimulusjs.org/) and [Chart.js](https://www.chartjs.org/) for showing currencies quatation in form of graph.
 
-Things you may want to cover:
+## Details
+Base exchange rates are fetched asynchronously from European Central Bank once a day on every working day. Application converts base currency from EUR to BRL and keeps rates in PosgreSQL database.
 
-* Ruby version
+## Demo
+A live demo is available at: [https://brl-exchange-rates.herokuapp.com/](https://brl-exchange-rates.herokuapp.com/)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Testing
+```
+bundle exec rspec spec/
+```
