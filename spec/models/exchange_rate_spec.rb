@@ -27,4 +27,17 @@ RSpec.describe ExchangeRate, type: :model do
     it { is_expected.to validate_presence_of(:rate) }
     it { is_expected.to validate_numericality_of(:rate).is_greater_than(0) }
   end
+
+  describe 'default scope' do
+    let!(:first_rate) {
+      ExchangeRate.create(currency: 'USD', rate: 1, date: Date.new(2019,2,1))
+    }
+    let!(:second_rate) {
+      ExchangeRate.create(currency: 'USD', rate: 1, date: Date.new(2019,2,2))
+    }
+
+    it 'orders by descending exchange rate date' do
+      expect(ExchangeRate.all).to eq([second_rate, first_rate])
+    end
+  end
 end

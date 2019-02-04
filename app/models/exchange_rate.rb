@@ -18,5 +18,6 @@ class ExchangeRate < ApplicationRecord
   validates :date, presence: true
   validates :rate, presence: true, numericality: { greater_than: 0 }
 
+  default_scope { order(date: :desc) }
   scope :last_week, -> { where('date >= ?', Time.now - 1.week) }
 end
