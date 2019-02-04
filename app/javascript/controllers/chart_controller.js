@@ -171,14 +171,16 @@ export default class extends Controller {
     )
     const labels = uniqueDates(data)
 
-    const datasets = values(groupedCurrencies).map(currencyRates => {
-      return currencyRates.map(rate => parseFloat(rate.rate))
-    })
+    const datasets = values(groupedCurrencies).reduce((res, currencyRates) => {
+      const rates = currencyRates.map(rate => parseFloat(rate.rate))
+      res[currencyRates[0].currency] = rates
+      return res
+    }, {})
 
     this.chart.data.labels = labels
 
-    this.chart.data.datasets.forEach((dataset, index) => {
-      dataset.data = datasets[index]
+    this.chart.data.datasets.forEach(dataset => {
+      dataset.data = datasets[dataset.label]
     })
 
     this.chart.update()
