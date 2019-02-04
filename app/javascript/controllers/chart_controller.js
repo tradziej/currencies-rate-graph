@@ -74,13 +74,15 @@ export default class extends Controller {
           xAxes: [
             {
               type: "time",
+              distribution: "series",
               time: {
                 parser: "YYYY-MM-DD",
                 unit: "day"
               },
               ticks: {
                 autoSkip: true,
-                maxTicksLimit: 12
+                maxTicksLimit: 12,
+                source: "data"
               }
             }
           ]
