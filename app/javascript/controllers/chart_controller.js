@@ -6,12 +6,12 @@ export default class extends Controller {
   static targets = ["ratesChart", "range"]
 
   initialize() {
-    this.disableOrEnableButtons()
+    this._disableOrEnableButtons()
   }
 
   connect() {
     this.chart
-    this.updateChart()
+    this._updateChart()
   }
 
   get range() {
@@ -20,8 +20,8 @@ export default class extends Controller {
 
   set range(value) {
     this.data.set("range", value)
-    this.disableOrEnableButtons()
-    this.loadData()
+    this._disableOrEnableButtons()
+    this._loadData()
   }
 
   get exchangeRates() {
@@ -31,7 +31,7 @@ export default class extends Controller {
 
   set exchangeRates(values) {
     this.data.set("exchangeRates", JSON.stringify(values))
-    this.updateChart()
+    this._updateChart()
   }
 
   get chart() {
@@ -106,9 +106,9 @@ export default class extends Controller {
     this.range = event.target.dataset.range
   }
 
-  loadData() {
+  _loadData() {
     const url = this.data.get("endpoint")
-    const params = this.getParams()
+    const params = this._getParams()
 
     const esc = encodeURIComponent
     const query = Object.keys(params)
@@ -117,14 +117,14 @@ export default class extends Controller {
 
     fetch(`${url}?${query}`)
       .then(response => response.json())
-      .then(this.loaded)
+      .then(this._loaded)
   }
 
-  loaded = data => {
+  _loaded = data => {
     this.exchangeRates = data
   }
 
-  getParams() {
+  _getParams() {
     const params = {}
     const date = new Date()
 
@@ -149,7 +149,7 @@ export default class extends Controller {
     return params
   }
 
-  disableOrEnableButtons() {
+  _disableOrEnableButtons() {
     this.rangeTargets.forEach(el => {
       if (el.dataset.range === this.range) {
         el.disabled = true
@@ -159,7 +159,7 @@ export default class extends Controller {
     }, this)
   }
 
-  updateChart() {
+  _updateChart() {
     const data = this.exchangeRates
 
     const byCurrency = groupBy(prop("currency"))
