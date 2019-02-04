@@ -7,6 +7,7 @@ Base exchange rates are fetched asynchronously from European Central Bank once a
 
 ## Demo
 A live demo is available at: [https://brl-exchange-rates.herokuapp.com/](https://brl-exchange-rates.herokuapp.com/)
+![Screenshot](https://raw.githubusercontent.com/tradziej/currencies-rate-graph/assets/assets/screenshot.png)
 
 ## Testing
 ```
